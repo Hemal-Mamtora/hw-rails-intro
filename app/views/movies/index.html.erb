@@ -1,7 +1,27 @@
 <!--  This file is app/views/movies/index.html.erb -->
 <h2>All Movies</h2>
 
+
 <%#  Part 2: Start here... %>
+
+<div>
+<b> Sort: </b>
+&nbsp;
+<%= link_to 'sort ASC', movies_path(release_date: "ASC"), :class => 'btn btn-primary' %>
+&nbsp;
+<%= link_to 'sort DESC', movies_path(release_date: "DESC") , :class => 'btn btn-primary' %>
+</div>
+
+<div>
+<b> Filter: </b>
+<%= form_tag("/movies", method: "get") do %>
+  <%= label_tag(:rating, "PG:") %>
+  <%= check_box_tag(:rating, "PG") %>
+  <%= label_tag(:rating, "R") %>
+  <%= check_box_tag(:rating, "R") %>
+  <%= submit_tag("Filter") %>
+<% end %>
+</div>
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>
@@ -32,5 +52,3 @@
   </tbody>
 </table>
 <%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
-<%= link_to 'sort ASC', movies_path(release_date: "ASC") %>
-<%= link_to 'sort DESC', movies_path(release_date: "DESC") %>
