@@ -7,21 +7,28 @@
 <div>
 <b> Sort: </b>
 &nbsp;
-<%= link_to 'sort ASC', movies_path(release_date: "ASC"), :class => 'btn btn-primary' %>
+<%= link_to 'sort ASC', params.merge(release_date: "ASC"), :class => 'btn btn-primary' %>
 &nbsp;
-<%= link_to 'sort DESC', movies_path(release_date: "DESC") , :class => 'btn btn-primary' %>
+<%= link_to 'sort DESC', params.merge(release_date: "DESC") , :class => 'btn btn-primary' %>
 </div>
 
 <div>
 <b> Filter: </b>
 <%= form_tag("/movies", method: "get") do %>
-  <%= label_tag(:rating, "PG:") %>
-  <%= check_box_tag(:rating, "PG") %>
+  <%= label_tag(:rating, "G:") %>
+  <%= radio_button_tag(:rating, "G") %>
+  <%= label_tag(:rating, "PG") %>
+  <%= radio_button_tag(:rating, "PG") %>
+  <%= label_tag(:rating, "PG-13") %>
+  <%= radio_button_tag(:rating, "PG-13") %>
   <%= label_tag(:rating, "R") %>
-  <%= check_box_tag(:rating, "R") %>
+  <%= radio_button_tag(:rating, "R") %>
+  <%= label_tag(:rating, "NC-17") %>
+  <%= radio_button_tag(:rating, "NC-17") %>
   <%= submit_tag("Filter") %>
 <% end %>
 </div>
+
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>
