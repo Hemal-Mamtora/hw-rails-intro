@@ -9,17 +9,17 @@ class MoviesController < ApplicationController
     def index
       # order = params[:order]
       @movies = Movie.all
-      if params[:rating]
-        # @movies = Movie.where("rating= '#{params[:rating]}'")
-        @movies.merge!(Movie.where(rating: params[:rating]))
-        # @movies = Movie.where(rating: params[:rating])
-      end
-      if params[:release_date]
-        # puts(params[:order])
-        # adds ORDER to the scope
-        # @movies = Movie.order(release_date: params[:release_date])
-        @movies.merge!(Movie.order(release_date: params[:release_date]))
-      end
+      # if params[:rating]
+      #   # @movies = Movie.where("rating= '#{params[:rating]}'")
+      #   @movies.merge!(Movie.where(rating: params[:rating]))
+      #   # @movies = Movie.where(rating: params[:rating])
+      # end
+      # if params[:release_date]
+      #   # puts(params[:order])
+      #   # adds ORDER to the scope
+      #   # @movies = Movie.order(release_date: params[:release_date])
+      #   @movies.merge!(Movie.order(release_date: params[:release_date]))
+      # end
     end
   
     def new
