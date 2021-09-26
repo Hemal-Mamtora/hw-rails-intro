@@ -7,7 +7,16 @@ class MoviesController < ApplicationController
     end
   
     def index
+      # order = params[:order]
       @movies = Movie.all
+      if params[:release_date]
+        # puts(params[:order])
+        # adds ORDER to the scope
+        @movies.merge!( Movie.order("release_date #{params[:release_date]}"))
+      end
+      if params[:rating]
+        @movies.merge!(Movie.where("rating= '#{params[:rating]}'"))
+      end
     end
   
     def new
