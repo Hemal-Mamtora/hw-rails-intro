@@ -3,39 +3,16 @@
 
 
 <%#  Part 2: Start here... %>
-
-<!--<div>-->
-<!--<b> Sort: </b>-->
-<!--&nbsp;-->
-<!--<%= link_to 'sort ASC', params.merge(release_date: "ASC"), :class => 'btn btn-primary' %>-->
-<!--&nbsp;-->
-<!--<%= link_to 'sort DESC', params.merge(release_date: "DESC") , :class => 'btn btn-primary' %>-->
-<!--</div>-->
-
-<!--<div>-->
-<!--<b> Filter: </b>-->
-<!--<%= form_tag("/movies", method: "get") do %>-->
-<!--  <%= label_tag(:rating, "G:") %>-->
-<!--  <%= radio_button_tag(:rating, "G") %>-->
-<!--  <%= label_tag(:rating, "PG") %>-->
-<!--  <%= radio_button_tag(:rating, "PG") %>-->
-<!--  <%= label_tag(:rating, "PG-13") %>-->
-<!--  <%= radio_button_tag(:rating, "PG-13") %>-->
-<!--  <%= label_tag(:rating, "R") %>-->
-<!--  <%= radio_button_tag(:rating, "R") %>-->
-<!--  <%= label_tag(:rating, "NC-17") %>-->
-<!--  <%= radio_button_tag(:rating, "NC-17") %>-->
-<!--  <%= submit_tag("Filter") %>-->
-<!--<% end %>-->
-<!--</div>-->
-
-
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th>Movie Title</th>
+      <th>
+        <%= link_to "Movie Title", movies_path(:sort => 'title'), :id => "title_header", :class => @title_header %>
+      </th>
       <th>Rating</th>
-      <th>Release Date</th>
+      <th>
+        <%= link_to "Release Date", movies_path(:sort => 'release_date'), :id => "release_date_header", :class => @release_date_header %>
+      </th>
       <th>More Info</th>
     </tr>
   </thead>
