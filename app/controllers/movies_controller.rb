@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
     end
   
     def index
-      @movies = Movie.order(params[:order])
+      @movies = Movie.order(params[:sort])
       # Note: Could not find class: "hilite" in Bootstrap
       #       Could not find class: "hilite" in assets/applications.css
       #       Hence, setting the class to bootstrap: bg-warning
