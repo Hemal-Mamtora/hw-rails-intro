@@ -7,32 +7,12 @@ class MoviesController < ApplicationController
     end
   
     def index
-      # order = params[:order]
-      @movies = Movie.all
-      if params[:sort] == 'title'
-        @movies = Movie.order(:title)
-      end
-      if params[:sort] == 'release_date'
-        @movies = Movie.order(:release_date)
-      end
-      
+      @movies = Movie.order(params[:order])
       # Note: Could not find class: "hilite" in Bootstrap
       #       Could not find class: "hilite" in assets/applications.css
       #       Hence, setting the class to bootstrap: bg-warning
       @title_header = params[:sort]=='title' ?'bg-warning':nil
       @release_date_header = params[:sort]=='release_date' ?'bg-warning':nil
-      
-      # if params[:rating]
-      #   # @movies = Movie.where("rating= '#{params[:rating]}'")
-      #   @movies.merge!(Movie.where(rating: params[:rating]))
-      #   # @movies = Movie.where(rating: params[:rating])
-      # end
-      # if params[:release_date]
-      #   # puts(params[:order])
-      #   # adds ORDER to the scope
-      #   # @movies = Movie.order(release_date: params[:release_date])
-      #   @movies.merge!(Movie.order(release_date: params[:release_date]))
-      # end
     end
   
     def new
