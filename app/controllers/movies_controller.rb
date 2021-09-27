@@ -7,12 +7,17 @@ class MoviesController < ApplicationController
     end
   
     def index
-      @movies = Movie.order(params[:sort])
+      @all_ratings = Movie.all_ratings
+      filter_ratings = params[:ratings] == nil ? @all_ratings : params[:ratings].keys
+      
       # Note: Could not find class: "hilite" in Bootstrap
       #       Could not find class: "hilite" in assets/applications.css
       #       Hence, setting the class to bootstrap: bg-warning
       @title_header = params[:sort]=='title' ?'bg-warning':nil
       @release_date_header = params[:sort]=='release_date' ?'bg-warning':nil
+      
+      @movies = Movie.with_ratings(filter_ratings).order(params[:sort])
+      
     end
   
     def new
