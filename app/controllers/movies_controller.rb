@@ -9,22 +9,26 @@ class MoviesController < ApplicationController
     def index
       @all_ratings = Movie.all_ratings
       
+      
       if(params[:sort] != nil and params[:sort] != session[:sort])
-          session[:sort] = params[:sort]
+        session[:sort] = params[:sort]
       end
-        
+
       if(params[:ratings] != nil and params[:ratings] != session[:ratings])
         session[:ratings] = params[:ratings]
       end
-
       
-      @filter_ratings = params[:ratings] == nil ? @all_ratings : params[:ratings].keys
+      if session[:sort] != params[:sort] or session[:ratings] != params[:ratings]
+        flash.keep
+        puts("here")
+        redirect_to({:sort => session[:sort], :ratings => session[:ratings]})
+      end
       
-      @movies = Movie.order(params[:sort])
-      @movies = Movie.with_ratings(@filter_ratings)
+      @filter_ratings = session[:ratings] == nil ? @all_ratings : session[:ratings].keys
+      @movies = Movie.with_ratings(@filter_ratings).order(session[:sort])
       
-      @title_header = params[:sort] == 'title'? 'bg-warning': nil
-      @release_date_header = params[:sort] == 'release_date'? 'bg-warning': nil
+      @title_header = session[:sort] == 'title'? 'bg-warning': nil
+      @release_date_header = session[:sort] == 'release_date'? 'bg-warning': nil
     end
   
     def new
