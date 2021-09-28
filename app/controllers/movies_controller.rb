@@ -9,15 +9,15 @@ class MoviesController < ApplicationController
     def index
       @all_ratings = Movie.all_ratings
       
-      if params[:sort] != session[:sort]
+      if params[:sort] != nil and params[:sort] != session[:sort]
         session[:sort] = params[:sort]
       end
 
-      if params[:ratings] != session[:ratings]
+      if params[:ratings] != nil and params[:ratings] != session[:ratings]
         session[:ratings] = params[:ratings]
       end
       
-      if (session[:sort] != params[:sort] or session[:ratings] != params[:ratings])
+      if (session[:sort] != params[:sort] or session[:ratings] != params[:ratings]) and session[:sort] != nil and session[:ratings] != nil
         flash.keep
         redirect_to({:sort => session[:sort], :ratings => session[:ratings]})
       end
